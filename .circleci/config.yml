@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  arm-wheels:
+    parameters:
+      build:
+        type: string
+      skip:
+        type: string
+        default: ""
+
+    machine:
+      image: ubuntu-2204:2023.07.1
+    resource_class: arm.medium
+
+    steps:
+      - checkout
+      - run:
+          name: install cibuildwheel
+          command: |
+            python3 -m pip install --upgrade pip setuptools twine cibuildwheel
+
+      - run:
+          name: cibuildwheel
+          command: |
+            python3 -m cibuildwheel .
+
+      - run:
+          name: upload
+          command: |
+            python3 -m twine upload wheelhouse/*.whl
+
+      - store_artifacts:
+          path: wheelhouse/
+
+workflows:
+  wheels: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - arm-wheels:
+          name: manylinux_aarch64
+          build: "*manylinux_aarch64*"
+          filters:
+            tags:
+              only: /.*/
