@@ -31,3 +31,20 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./wheelhouse/*.whl
+
+  build_source:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v5
+
+      - name: Build source distribution
+        run: python setup.py sdist
+
+      - name: Store source distribution
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./dist/*.tar.gz
