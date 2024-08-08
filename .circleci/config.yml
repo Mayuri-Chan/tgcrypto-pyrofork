@@ -25,10 +25,10 @@ jobs:
           command: |
             python3 -m cibuildwheel .
 
-      - run:
-          name: upload
-          command: |
-            python3 -m twine upload wheelhouse/*.whl
+      #- run:
+      #    name: upload
+      #    command: |
+      #      python3 -m twine upload wheelhouse/*.whl
 
       - store_artifacts:
           path: wheelhouse/
