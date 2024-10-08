@@ -13,7 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
       - name: Install cibuildwheel
         run: pip install cibuildwheel twine
@@ -21,14 +23,14 @@ jobs:
       - name: Build wheels
         run: cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
+          CIBW_ARCHS_MACOS: "arm64"
           CIBW_TEST_REQUIRES: tox
           CIBW_TEST_COMMAND: cd {project} && tox
           CIBW_TEST_SKIP: "*-win*"
           CIBW_BUILD_VERBOSITY: 1
 
-      - name: Release to pypi
-        run: twine upload wheelhouse/*.whl
+      - name: Testing
+        run: python -VV
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
