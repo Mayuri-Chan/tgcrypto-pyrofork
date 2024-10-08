@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v3
 
       - name: Install cibuildwheel
         run: pip install cibuildwheel twine
