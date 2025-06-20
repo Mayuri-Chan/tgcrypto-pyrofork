@@ -63,7 +63,7 @@ setup(
         "Source": "https://github.com/Mayuri-Chan/tgcrypto",
         "Documentation": "https://pyrofork.mayuri.my.id",
     },
-    python_requires="~=3.9",
+    python_requires=">=3.9",
     packages=find_packages(),
     test_suite="tests",
     zip_safe=False,
