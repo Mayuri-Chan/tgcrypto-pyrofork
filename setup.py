@@ -23,7 +23,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="TgCrypto-pyrofork",
-    version="1.2.7",
+    version="1.2.8",
     description="Fast and Portable Cryptography Extension Library for Pyrofork",
     long_description=readme,
     long_description_content_type="text/markdown",
