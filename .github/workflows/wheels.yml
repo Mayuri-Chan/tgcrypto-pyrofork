@@ -8,6 +8,8 @@ on:
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
+    permissions:
+      id-token: write
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -35,6 +37,8 @@ jobs:
 
   build_wheels_aarch64:
     name: Build wheels on ${{ matrix.os }}
+    # permissions:
+      # id-token: write
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -64,6 +68,8 @@ jobs:
 
   build_source:
     name: Build source distribution
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
 
     steps:
